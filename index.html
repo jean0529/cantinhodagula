@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff1681">
+  <title>Cantinho da Gula | Seu mercado pertinho de você</title>
+
+  <style>
+    :root {
+      --rosa: #ff1681;
+      --preto: #17131a;
+      --fundo: #f8f6f8;
+      --branco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fundo);
+      color: var(--preto);
+    }
+
+    header {
+      background: var(--preto);
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .logo span {
+      color: var(--rosa);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--rosa);
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #17131a, #492037);
+      color: white;
+      padding: 65px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .tag {
+      color: #ff80ba;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 55px);
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+
+    .hero h1 span {
+      color: var(--rosa);
+    }
+
+    .hero p {
+      color: #e5dfe5;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 9px;
+      background: var(--rosa);
+      color: white;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .hero-icon {
+      font-size: 120px;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 25px 7%;
+    }
+
+    .benefit {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 3px 15px #00000008;
+    }
+
+    .benefit span {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    main {
+      padding: 35px 7% 60px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h2 span {
+      color: var(--rosa);
+    }
+
+    .search {
+      width: 100%;
+      max-width: 320px;
+      padding: 13px 15px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .category {
+      border: 1px solid #e3dce3;
+      background: white;
+      padding: 10px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .category.active,
+    .category:hover {
+      background: var(--rosa);
+      border-color: var(--rosa);
+      color: white;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px #00000008;
+      display: flex;
+      flex-direction: column;
+      transition: 0.2s;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px #00000012;
+    }
+
+    .product-image {
+      background: #fff0f7;
+      height: 145px;
+      display: grid;
+      place-items: center;
+      font-size: 65px;
+    }
+
+    .product-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-info small {
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--rosa);
+      margin-top: auto;
+      margin-bottom: 14px;
+    }
+
+    .add {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 7px;
+      background: var(--preto);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add:hover {
+      background: var(--rosa);
+    }
+
+    .empty {
+      padding: 30px 0;
+      color: #777;
+    }
+
+    .cart-panel {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 35px;
+      box-shadow: 0 4px 18px #00000008;
+    }
+
+    .cart-panel h2 {
+      margin-bottom: 18px;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-row button {
+      border: none;
+      background: transparent;
+      color: #d20b55;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .cart-total {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .checkout {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .checkout input {
+      flex: 1;
+      min-width: 200px;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    footer {
+      background: var(--preto);
+      color: #ddd;
+      text-align: center;
+      padding: 28px 7%;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: var(--rosa);
+    }
+
+    @media (max-width: 850px) {
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding: 18px 5%;
+      }
+
+      .hero, main {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .benefits {
+        padding: 18px 5%;
+        gap: 8px;
+      }
+
+      .benefit {
+        padding: 12px 5px;
+        font-size: 12px;
+      }
+
+      .products {
+        gap: 12px;
+      }
+
+      .product-image {
+        height: 110px;
+        font-size: 48px;
+      }
+
+      .product-info {
+        padding: 12px;
+      }
+
+      .product-info h3 {
+        font-size: 14px;
+      }
+
+      .hero-icon {
+        font-size: 75px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Cantinho <span>da Gula.</span></div>
+
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#carrinho">🛒 Carrinho (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="tag">Seu mercado de confiança</div>
+      <h1>Tudo o que você gosta, <span>pertinho de você!</span></h1>
+      <p>
+        Do lanche do dia a dia às suas guloseimas favoritas.
+        Encontre seus produtos preferidos no Cantinho da Gula.
+      </p>
+      <a class="btn" href="#produtos">Ver produtos →</a>
+    </div>
+
+    <div class="hero-icon">🛒</div>
+  </section>
+
+  <section class="benefits">
+    <div class="benefit">
+      <span>🛍️</span>
+      Variedade
+    </div>
+    <div class="benefit">
+      <span>💗</span>
+      Feito para você
+    </div>
+    <div class="benefit">
+      <span>📍</span>
+      Santa Cândida
+    </div>
+  </section>
+
+  <main>
+    <section id="produtos">
+      <div class="section-heading">
+        <div>
+          <p class="tag">Escolha seus favoritos</p>
+          <h2>Nossos <span>produtos</span></h2>
+        </div>
+
+        <input
+          class="search"
+          id="search"
+          type="search"
+          placeholder="🔎 Buscar produto..."
+          aria-label="Buscar produto"
+        >
+      </div>
+
+      <div class="categories" id="categories">
+        <button class="category active" data-category="Todos">Todos</button>
+        <button class="category" data-category="Bebidas">🥤 Bebidas</button>
+        <button class="category" data-category="Doces">🍫 Doces</button>
+        <button class="category" data-category="Mercearia">🛒 Mercearia</button>
+        <button class="category" data-category="Salgadinhos">🍿 Salgadinhos</button>
+      </div>
+
+      <div class="products" id="products"></div>
+      <p class="empty" id="empty" hidden>Nenhum produto encontrado.</p>
+    </section>
+
+    <section class="cart-panel" id="carrinho">
+      <h2>🛒 Meu carrinho</h2>
+      <div id="cart-items">
+        Seu carrinho está vazio.
+      </div>
+
+      <div class="cart-total">
+        Total: <span id="cart-total">R$ 0,00</span>
+      </div>
+
+      <div class="checkout">
+        <input
+          id="customer-name"
+          type="text"
+          placeholder="Seu nome"
+          maxlength="80"
+        >
+        <button class="btn" id="whatsapp">
+          Pedir pelo WhatsApp
+        </button>
+      </div>
+
+      <p style="color:#777;font-size:13px;margin-top:12px">
+        Demonstração: os produtos e preços são ilustrativos.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Cantinho da Gula</strong>
+    <p>Seu cantinho, seus sabores, sua felicidade! 💗</p>
+    <p>Santa Cândida · Curitiba - PR</p>
+    <small>© <span id="year"></span> Cantinho da Gula</small>
+  </footer>
+
+  <script>
+    // PRODUTOS DE EXEMPLO: altere nomes e preços quando quiser.
+    const products = [
+      { id: 1, name: "Refrigerante", detail: "Lata 350 ml", price: 4.50, category: "Bebidas", emoji: "🥤" },
+      { id: 2, name: "Suco", detail: "Caixinha 200 ml", price: 3.00, category: "Bebidas", emoji: "🧃" },
+      { id: 3, name: "Água mineral", detail: "Garrafa 500 ml", price: 2.50, category: "Bebidas", emoji: "💧" },
+      { id: 4, name: "Chocolate", detail: "Barra de chocolate", price: 6.90, category: "Doces", emoji: "🍫" },
+      { id: 5, name: "Bala sortida", detail: "Pacote de balas", price: 3.50, category: "Doces", emoji: "🍬" },
+      { id: 6, name: "Biscoito", detail: "Pacote tradicional", price: 4.20, category: "Mercearia", emoji: "🍪" },
+      { id: 7, name: "Macarrão", detail: "Pacote 500 g", price: 5.50, category: "Mercearia", emoji: "🍝" },
+      { id: 8, name: "Pipoca", detail: "Pacote de salgadinho", price: 4.00, category: "Salgadinhos", emoji: "🍿" }
+    ];
+
+    // IMPORTANTE: coloque aqui o WhatsApp comercial com DDI + DDD.
+    // Exemplo fictício: 5541999999999. Troque pelo número real.
+    const WHATSAPP_NUMBER = "";
+
+    let cart = [];
+    let activeCategory = "Todos";
+
+    const money = value =>
+      value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+
+    function renderProducts() {
+      const search = document.getElementById("search").value
+        .trim()
+        .toLocaleLowerCase("pt-BR");
+
+      const filtered = products.filter(product => {
+        const matchesCategory =
+          activeCategory === "Todos" ||
+          product.category === activeCategory;
+
+        const matchesSearch =
+          product.name.toLocaleLowerCase("pt-BR").includes(search) ||
+          product.category.toLocaleLowerCase("pt-BR").includes(search);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      const container = document.getElementById("products");
+      container.replaceChildren();
+
+      filtered.forEach(product => {
+        const card = document.createElement("article");
+        card.className = "product";
+
+        const picture = document.createElement("div");
+        picture.className = "product-image";
+        picture.textContent = product.emoji;
+
+        const info = document.createElement("div");
+        info.className = "product-info";
+
+        const category = document.createElement("small");
+        category.textContent = product.category;
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        const detail = document.createElement("small");
+        detail.textContent = product.detail;
+
+        const price = document.createElement("div");
+        price.className = "price";
+        price.textContent = money(product.price);
+
+        const add = document.createElement("button");
+        add.className = "add";
+        add.textContent = "+ Adicionar";
+        add.addEventListener("click", () => addToCart(product.id));
+
+        info.append(category, name, detail, price, add);
+        card.append(picture, info);
+        container.append(card);
+      });
+
+      document.getElementById("empty").hidden = filtered.length > 0;
+    }
+
+    function addToCart(id) {
+      const item = cart.find(product => product.id === id);
+
+      if (item) {
+        item.quantity++;
+      } else {
+        cart.push({ id, quantity: 1 });
+      }
+
+      renderCart();
+    }
+
+    function changeQuantity(id, amount) {
+      const item = cart.find(product => product.id === id);
+      if (!item) return;
+
+      item.quantity += amount;
+
+      if (item.quantity <= 0) {
+        cart = cart.filter(product => product.id !== id);
+      }
+
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cart-items");
+      container.replaceChildren();
+
+      if (cart.length === 0) {
+        container.textContent = "Seu carrinho está vazio.";
+      }
+
+      cart.forEach(item => {
+        const product = products.find(p => p.id === item.id);
+        const row = document.createElement("div");
+        row.className = "cart-row";
+
+        const description = document.createElement("span");
+        description.textContent =
+          `${product.name} × ${item.quantity} — ` +
+          money(product.price * item.quantity);
+
+        const controls = document.createElement("span");
+
+        const minus = document.createElement("button");
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", "Diminuir quantidade");
+        minus.addEventListener("click", () =>
+          changeQuantity(item.id, -1)
+        );
+
+        const plus = document.createElement("button");
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", "Aumentar quantidade");
+        plus.addEventListener("click", () =>
+          changeQuantity(item.id, 1)
+        );
+
+        controls.append(minus, plus);
+        row.append(description, controls);
+        container.append(row);
+      });
+
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const total = cart.reduce((sum, item) => {
+        const product = products.find(p => p.id === item.id);
+        return sum + product.price * item.quantity;
+      }, 0);
+
+      document.getElementById("cart-count").textContent = count;
+      document.getElementById("cart-total").textContent = money(total);
+    }
+
+    document.getElementById("search").addEventListener("input", renderProducts);
+
+    document.getElementById("categories").addEventListener("click", event => {
+      const button = event.target.closest("button[data-category]");
+      if (!button) return;
+
+      activeCategory = button.dataset.category;
+
+      document.querySelectorAll(".category").forEach(category => {
+        category.classList.toggle("active", category === button);
+      });
+
+      renderProducts();
+    });
+
+    document.getElementById("whatsapp").addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Adicione pelo menos um produto ao carrinho.");
+        return;
+      }
+
+      if (!/^55\d{10,11}$/.test(WHATSAPP_NUMBER)) {
+        alert("O site está funcionando! Para receber pedidos, configure o número do WhatsApp no código.");
+        return;
+      }
+
+      const customerName =
+        document.getElementById("customer-name").value.trim();
+
+      if (!customerName) {
+        alert("Digite seu nome antes de continuar.");
+        document.getElementById("customer-name").focus();
+        return;
+      }
+
+      const lines = cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        return `• ${product.name} x${item.quantity} = ${
+          money(product.price * item.quantity)
+        }`;
+      });
+
+      const total = cart.reduce((sum, item) => {
+        const product = products.find(p => p.id === item.id);
+        return sum + product.price * item.quantity;
+      }, 0);
+
+      const message = [
+        "Olá! Quero fazer um pedido no Cantinho da Gula.",
+        `Nome: ${customerName}`,
+        "",
+        ...lines,
+        "",
+        `Total dos produtos: ${money(total)}`,
+        "",
+        "Gostaria de confirmar a disponibilidade e a entrega."
+      ].join("\n");
+
+      const url = "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(message);
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    renderProducts();
+    renderCart();
+  </script>
+
+</body>
+</html>
